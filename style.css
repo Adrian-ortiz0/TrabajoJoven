@@ -1,0 +1,290 @@
+@font-face {
+  font-family: "baloo";
+  src: url(/backstage/balooFont.ttf);
+}
+
+.loginMain {
+  display: flex;
+  margin: auto;
+  width: 100%;
+  height: 100vh;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#logoInicio {
+  animation: float 2s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.mainSection {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  align-items: center;
+  height: 80%;
+  justify-content: space-around;
+}
+
+.btnContainers {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.btnsLogin {
+  width: 110px;
+  height: 40px;
+  border-radius: 20px;
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+#loginUsuarioBtn {
+  background-color: rgb(78, 184, 118);
+}
+#loginEmpresaBtn {
+  background-color: rgba(255, 102, 0, 0.767);
+}
+#loginUsuarioBtn:hover {
+  background-color: rgba(37, 133, 74, 0.774);
+}
+#loginEmpresaBtn:hover {
+  background-color: rgb(255, 123, 0);
+}
+
+.bodyLoginRegister {
+  margin: 0;
+}
+
+.headerUsuariosLogin {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  background-color: rgba(1, 145, 131, 0.158);
+  gap: 130px;
+  align-items: center;
+}
+
+.mainUsuariosRegister {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+.formularioUsuarios {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  font-family: baloo;
+  color: #000000d2;
+}
+#genero,
+#parentesco {
+  width: 42.5%;
+}
+.formularioUsuarios input,
+.formularioUsuarios select {
+  width: 40%;
+  font-family: baloo;
+  margin: 10px 0;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  font-size: 16px;
+  color: #333;
+  transition: all 0.3s ease;
+}
+.datosDeUsuario,
+.datosTitular {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.datosDeUsuario div,
+.datosTitular div {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btnEnviarUsuarioLogin {
+  margin-top: 50px;
+  margin-bottom: 40px;
+  width: 100px;
+  height: 50px;
+  background-color: transparent;
+  border: none;
+  border-radius: 15px;
+  background-color: rgba(240, 99, 5, 0.767);
+  color: white;
+  font-family: baloo;
+  font-size: 20px;
+}
+.headerTerminosCondiciones {
+  display: flex;
+  justify-content: center;
+  width: 70%;
+  margin: auto;
+}
+
+.mainTerminosCondiciones {
+  display: flex;
+  margin: auto;
+  height: 50vh;
+  width: 70%;
+  font-family: baloo;
+}
+.mainTerminosCondiciones p {
+  text-align: center;
+  padding: 0px 20px;
+  color: #333;
+}
+#terminosCondicionesTitulo {
+  text-align: center;
+  color: rgba(217, 101, 6, 0.899);
+}
+.informacionTerminosUsuarios {
+  overflow: auto;
+  border: 3px solid rgba(78, 184, 133, 0.272);
+
+  border-radius: 20px;
+}
+.informacionTerminosUsuarios ul {
+  width: 80%;
+  margin: auto;
+}
+.contenedorBtnTerminosCondicionesUsuario {
+  margin: auto;
+  display: flex;
+  width: 70%;
+  height: 45px;
+  justify-content: space-around;
+  margin-top: 50px;
+  margin-bottom: 35px;
+}
+.btnTerminosCondicionesUsuario {
+  width: 100px;
+  background-color: transparent;
+  border: none;
+  font-family: baloo;
+  color: white;
+  font-size: 15px;
+  border-radius: 15px;
+  background-color: rgba(78, 184, 133, 0.845);
+}
+#miniFinder {
+  display: flex;
+  justify-content: center;
+}
+
+.mainPerfil {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  font-family: baloo;
+}
+.edicionDePerfil {
+  text-align: center;
+}
+#perfilFoto {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.containerBtnUsuarioOpciones {
+  display: flex;
+  width: 90%;
+  align-items: center;
+  justify-content: space-around;
+}
+#btnCurriculum {
+  background-color: rgb(233, 109, 21);
+  border: none;
+  width: 140px;
+  height: 50px;
+  border-radius: 15px;
+  color: white;
+  font-family: baloo;
+  font-size: 20px;
+}
+#btnContacto {
+  background-color: rgb(25, 200, 154);
+  border: none;
+  width: 140px;
+  height: 50px;
+  border-radius: 15px;
+  color: white;
+  font-family: baloo;
+  font-size: 20px;
+}
+
+.empresasCarousel {
+  display: flex;
+  justify-content: space-between;
+  overflow-x: auto;
+}
+
+.premiumContainerUsuarios {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 150px;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+#btnCuentaPremium {
+  width: 300px;
+  background-color: rgb(233, 109, 21);
+  color: white;
+  border: none;
+  border-radius: 15px;
+  height: 50px;
+  font-family: baloo;
+  font-size: 20px;
+}
+
+.navegadorUsuarios {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  margin-bottom: 30px;
+}
+
+#btnUsuarioSearch {
+  background-color: rgb(25, 200, 154);
+  width: 50px;
+  border-radius: 50px;
+  margin-right: 15px;
+  border: none;
+}
+
+#navigatorUser {
+  background-color: transparent;
+  border: none;
+}
+
+#btnUsuarioPerfil {
+  background-color: transparent;
+  border: none;
+}
