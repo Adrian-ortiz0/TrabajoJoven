@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <script defer src="/static/js_usuarios/registerEmpresas.js"></script>
+    <title>Empresas Registro</title>
+</head>
+
+<body class="bodyLoginRegister">
+    <header class="headerUsuariosLogin">
+        <a href="/templates/index.html">
+            <img src="/static/backstage/return.svg" alt="" width="30px">
+        </a>
+        <img src="/static/backstage/logo.png" alt="" width="80px">
+    </header>
+    <main class="mainUsuariosRegister" id="mainEmpresasRegister">
+        <form action="" class="formularioUsuarios" id="formularioUsuarios">
+            <h2>Datos de la empresa</h2>
+            <section class="datosDeUsuario" id="datosDeUsuario">
+                <div>
+                    <label for="inputNombre">Nombre: </label>
+                    <input type="text" id="inputNombre" required>
+                </div>
+                <div>
+                    <label for="inputSegundoNombre">Segundo Nombre: </label>
+                    <input type="text" id="inputSegundoNombre">
+                </div>
+                <div>
+                    <label for="inputPrimerApellido">Primer Apellido: </label>
+                    <input type="text" id="inputPrimerApellido" required>
+                </div>
+                <div>
+                    <label for="inputSegundoApellido">Segundo Apellido: </label>
+                    <input type="text" id="inputSegundoApellido" required>
+                </div>
+                <div>
+                    <label for="inputNombreDeLaEmpresa">Nombre de la empresa: </label>
+                    <input type="text" id="inputNombreDeLaEmpresa" required>
+                </div>
+                <div>
+                    <label for="sector">sector: </label>
+                    <select name="sector" id="sector" required>
+                        <option value="restaurante">Restaurantes</option>
+                        <option value="servicioAlCliente">Servicio Al cliente</option>
+                        <option value="ventas">Ventas</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="telefonoEmpresa">Telefono: </label>
+                    <input type="number" id="telefonoEmpresa" required>
+                </div>
+                <div>
+                    <label for="nitEmpresa">N.I.T: </label>
+                    <input type="text" id="nitEmpresa" required>
+                </div>
+                <div>
+                    <label for="razonSocialEmpresa">Razón Social: </label>
+                    <input type="text" id="razonSocialEmpresa" required>
+                </div>
+                <div>
+                    <label for="contraseñaEmpresa">Contraseña: </label>
+                    <input type="text" id="contraseñaEmpresa" required>
+                </div>
+            </section>
+            <hr>
+
+            <button class="btnEnviarUsuarioLogin" id="btnEnviarEmpresaLogin">Enviar</button>
+        </form>
+    </main>
+</body>
+
+</html>

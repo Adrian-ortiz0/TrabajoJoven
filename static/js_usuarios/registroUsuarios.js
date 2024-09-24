@@ -6,6 +6,6 @@ btnEnviarUsuarioLogin.addEventListener("click", function () {
 });
 
 const formularioUsuarios = document.getElementById("formularioUsuarios");
-formularioUsuarios.addEventListener("click", async function (event) {
+formularioUsuarios.addEventListener("click",function (event) {
   event.preventDefault();
 });
