@@ -1,11 +1,5 @@
-const btnEnviarUsuarioLogin = document.getElementById("btnEnviarUsuarioLogin");
+const btnIniciarSesion = document.getElementById("btnIniciarSesion");
 
-btnEnviarUsuarioLogin.addEventListener("click", function () {
-  window.location.href =
-    "/terminos-condiciones";
-});
-
-const formularioUsuarios = document.getElementById("formularioUsuarios");
-formularioUsuarios.addEventListener("click", function (e) {
-  e.preventDefault();
+btnIniciarSesion.addEventListener("click", function () {
+  window.location.href = "/templates/sub_pages/perfilUsuario.html";
 });
