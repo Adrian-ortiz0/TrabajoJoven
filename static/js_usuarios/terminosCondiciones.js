@@ -2,8 +2,8 @@ const btnNoAceptoUsuario = document.getElementById("btnNoAceptoUsuario");
 const btnAceptoUsuario = document.getElementById("btnAceptoUsuario");
 
 btnNoAceptoUsuario.addEventListener("click", function () {
-  window.location.href = "/index.html";
+  window.location.href = "/";
 });
 btnAceptoUsuario.addEventListener("click", function () {
-  window.location.href = "/sub_pages/perfilUsuario.html";
+  window.location.href = "/perfil-usuario";
 });
