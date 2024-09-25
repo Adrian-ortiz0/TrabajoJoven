@@ -17,8 +17,12 @@
             </div>
             <div>
                 <div class="btnContainers">
-                    <button class="btnsLogin" id="loginUsuarioBtn">Ingresar</button>
-                    <button class="btnsLogin" id="registerUsuarioBtn">Registrarse</button>
+                    <button class="btnsLogin" id="loginUsuarioBtn">
+                        <a href="{{ url_for('login_usuarios') }}">Ingresar</a>
+                    </button>
+                    <button class="btnsLogin" id="registerUsuarioBtn">
+                        <a href="{{ url_for('registro_usuarios') }}">Registrar</a>
+                    </button>
                 </div>
             </div>
         </section>
