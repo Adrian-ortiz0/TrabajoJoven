@@ -35,8 +35,12 @@
         </article>
     </main>
     <div class="contenedorBtnTerminosCondicionesUsuario">
-        <button class="btnTerminosCondicionesUsuario" id="btnNoAceptoUsuario">No Acepto</button>
-        <button class="btnTerminosCondicionesUsuario" id="btnAceptoUsuario">Acepto</button>
+        <button class="btnTerminosCondicionesUsuario" id="btnNoAceptoUsuario">
+            <a href="{{ url_for('index') }}">No Acepto</a>
+        </button>
+        <button class="btnTerminosCondicionesUsuario" id="btnAceptoUsuario">
+            <a href="{{ url_for('perfil') }}">Acepto</a>
+        </button>
     </div>
     <hr>
     <div id="miniFinder">

@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect,url_for
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -34,9 +34,21 @@ def registro_empresas():
 def login_usuarios():
     return render_template("sub_pages/usuariosLoginForm.html")
 
-@app.route("/registro_usuarios")
+@app.route('/registro_usuarios', methods=['GET', 'POST'])
 def registro_usuarios():
-    return render_template("sub_pages/usuariosRegisterForm.html")
+    if request.method == 'POST':
+        # Aquí procesarías el formulario de registro
+        # Por ahora, solo redirigimos a la página principal
+        return redirect(url_for('terminos_condiciones_usuarios'))
+    return render_template('sub_pages/usuariosRegisterForm.html')
+
+@app.route('/terminos_condiciones_usuarios')
+def terminos_condiciones_usuarios():
+    return render_template('sub_pages/terminosCondicionesUsuarios.html')
+
+@app.route('/perfil')
+def perfil():
+    return render_template('sub_pages/perfilUsuario.html')
 
 if __name__ == "__main__":
     app.run(debug=True)

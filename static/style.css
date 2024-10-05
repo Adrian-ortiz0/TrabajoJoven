@@ -205,6 +205,12 @@ hr {
   margin-top: 50px;
   margin-bottom: 35px;
 }
+
+.btnTerminosCondicionesUsuario a {
+  text-decoration: none;
+  color: black;
+}
+
 .btnTerminosCondicionesUsuario {
   width: 100px;
   background-color: transparent;
