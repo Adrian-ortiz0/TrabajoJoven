@@ -1,11 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin</title>
+    <title>Panel de Administración</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+            text-align: left;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
 </head>
+
 <body>
-    
+    <header>
+        <h1>Panel de Administración</h1>
+        <a href="{{ url_for('index') }}">Volver al inicio</a>
+    </header>
+    <main>
+        <h2>Lista de Usuarios Registrados</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Segundo Nombre</th>
+                    <th>Primer Apellido</th>
+                    <th>Segundo Apellido</th>
+                    <th>Correo</th>
+                    <th>Teléfono</th>
+                    <th>Género</th>
+                    <th>Fecha de Nacimiento</th>
+                    <th>Tarjeta de Identidad</th>
+                    <th>Fecha de Expedición</th>
+                    <th>Acudiente ID</th>
+                    <th>Nombre Acudiente</th>
+                    <th>Correo Acudiente</th>
+                    <th>Teléfono Acudiente</th>
+                    <th>Parentesco</th>
+                    <th>Fecha de Nacimiento Acudiente</th>
+                    <th>Cedula</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for usuario in usuarios %}
+                <tr>
+                    <td>{{ usuario.id }}</td>
+                    <td>{{ usuario.nombre }}</td>
+                    <td>{{ usuario.segundo_nombre }}</td>
+                    <td>{{ usuario.primer_apellido }}</td>
+                    <td>{{ usuario.segundo_apellido }}</td>
+                    <td>{{ usuario.correo }}</td>
+                    <td>{{ usuario.telefono }}</td>
+                    <td>{{ usuario.genero }}</td>
+                    <td>{{ usuario.fecha_nacimiento }}</td>
+                    <td>{{ usuario.tarjeta_identidad }}</td>
+                    <td>{{ usuario.fecha_expedicion }}</td>
+                    <td>{{ usuario.acudiente_id }}</td>
+                    <td>
+                        {% if usuario.acudiente %}
+                            {{ usuario.acudiente.nombre }} {{ usuario.acudiente.primer_apellido }}
+                        {% else %}
+                            No asignado
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if usuario.acudiente %}
+                            {{ usuario.acudiente.correo }}
+                        {% else %}
+                            No asignado
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if usuario.acudiente %}
+                            {{ usuario.acudiente.telefono }}
+                        {% else %}
+                            No asignado
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if usuario.acudiente %}
+                            {{ usuario.acudiente.parentesco }}
+                        {% else %}
+                            No asignado
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if usuario.acudiente %}
+                            {{ usuario.acudiente.fecha_nacimiento }}
+                        {% else %}
+                            No asignado
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if usuario.acudiente %}
+                            {{ usuario.acudiente.cc_titular }}
+                        {% else %}
+                            No asignado
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
 </body>
+
 </html>

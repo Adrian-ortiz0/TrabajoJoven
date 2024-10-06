@@ -221,6 +221,11 @@ hr {
   border-radius: 15px;
   background-color: rgba(78, 184, 133, 0.845);
 }
+
+#btnNoAceptoUsuario {
+  background-color: rgba(255, 0, 0, 0.758);
+}
+
 #miniFinder {
   display: flex;
   justify-content: center;

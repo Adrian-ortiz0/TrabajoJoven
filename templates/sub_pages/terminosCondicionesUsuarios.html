@@ -34,14 +34,13 @@
                 Reprehenderit, quo.</p>
         </article>
     </main>
-    <div class="contenedorBtnTerminosCondicionesUsuario">
-        <button class="btnTerminosCondicionesUsuario" id="btnNoAceptoUsuario">
-            <a href="{{ url_for('index') }}">No Acepto</a>
-        </button>
-        <button class="btnTerminosCondicionesUsuario" id="btnAceptoUsuario">
-            <a href="{{ url_for('perfil') }}">Acepto</a>
-        </button>
-    </div>
+    <form action="{{ url_for('procesar_terminos_condiciones') }}" method="POST"
+        class="contenedorBtnTerminosCondicionesUsuario">
+        <button class="btnTerminosCondicionesUsuario" id="btnAceptoUsuario" type="submit" name="acepto"
+            value="true">Acepto</button>
+        <button class="btnTerminosCondicionesUsuario" id="btnNoAceptoUsuario" type="submit" name="acepto"
+            value="false">No Acepto</button>
+    </form>
     <hr>
     <div id="miniFinder">
         <a href="">
