@@ -12,13 +12,16 @@
     <main class="mainLogin">
         <section class="loginSectionUsuarios">
             <img src="/static/backstage/logo.png" alt="" width="250">
-            <div class="containerInputsLoginUsuario">
-                <label for="inputNombreLogin">Nombre:</label>
-                <input type="text" id="inputNombreLogin" placeholder="Nombre">
-                <label for="inputContraseñaLogin">T.I:</label>
-                <input type="password" id="inputContraseñaLogin" placeholder="Tarjeta de identidad">
-            </div>
-            <button id="btnIniciarSesion">Ingresar</button>
+            <form action="{{url_for('login_usuarios')}}" method="POST" class="formUsuarios">
+                <div class="containerInputsLoginUsuario">
+                    <label for="inputCorreoLogin">Correo:</label>
+                    <input type="email" id="inputCorreoLogin" name="inputCorreoUsuario" placeholder="Correo" required>
+                    <label for="inputContraseñaLogin">T.I:</label>
+                    <input type="password" id="inputContraseñaLogin" placeholder="Contraseña"
+                        name="contraseñaUsuario">
+                </div>
+                <button id="btnIniciarSesion" type="submit">Ingresar</button>
+            </form>
         </section>
     </main>
 </body>

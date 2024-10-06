@@ -1,7 +1,8 @@
 from flask import Flask, render_template, request, redirect,url_for, flash, session
 import re
 from models import db, Usuario, Acudiente
-from werkzeug.security import generate_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
+from functools import wraps
 
 app = Flask(__name__)
 
@@ -50,9 +51,36 @@ def registro_empresas():
         contraseña_empresa = request.form["contraseñaEmpresa"]     
         return render_template("sub_pages/empresaRegisterForm.html")
 
-@app.route("/login_usuarios")
+@app.route("/login_usuarios", methods = ["GET", "POST"])
 def login_usuarios():
+    if request.method == "POST":
+        correo = request.form.get("inputCorreoUsuario")
+        contraseña = request.form.get("contraseñaUsuario")
+        
+        # Buscar al usuario en la base de datos
+        usuario = Usuario.query.filter_by(correo=correo).first()
+        
+        if usuario and check_password_hash(usuario.contraseña, contraseña):
+            # Si las credenciales son correctas, iniciar sesión
+            session['usuario_id'] = usuario.id  # Guardar el ID del usuario en la sesión
+            flash(f"Bienvenido, {usuario.nombre}!")
+            return redirect(url_for('perfil'))  # Redirigir al perfil del usuario
+        else:
+            # Si las credenciales no son válidas, mostrar un mensaje de error
+            flash("Correo o contraseña incorrectos.")
+            return redirect(url_for('login_usuarios'))  # Redirigir al formulario de login
+        
     return render_template("sub_pages/usuariosLoginForm.html")
+
+def login_requerido(f):
+    @wraps(f)
+    def wrap(*args, **kwargs):
+        # Verificar si el usuario ha iniciado sesión
+        if 'usuario_id' not in session:
+            flash("Debes iniciar sesión para acceder a esta página.")
+            return redirect(url_for('login_usuarios'))  # Redirigir al login si no está autenticado
+        return f(*args, **kwargs)
+    return wrap
 
 @app.route('/registro_usuarios', methods=['GET', 'POST'])
 def registro_usuarios():
@@ -60,17 +88,17 @@ def registro_usuarios():
                 
         #Obteniendo los datos del form
         
-        nombre_usuario = request.form["inputNombre"]
-        segundo_nombre = request.form["inputSegundoNombre"]
-        primer_apellido = request.form["inputPrimerApellido"]
-        segundo_apellido = request.form["inputSegundoApellido"]
-        correo_usuario = request.form["inputCorreoUsuario"]
-        telefono_usuario = request.form["inputTelefonoUsuario"]
-        genero_usuario = request.form["genero"]
-        fecha_nacimiento_usuario = request.form["fechaDeNacimiento"]
-        tarjeta_identidad = request.form["tarjetaDeIdentidad"]
-        fecha_expedicion_usuario = request.form["fechaDeExpedicion"]
-        contraseña_usuario = request.form["contraseñaUsuario"]
+        nombre_usuario = request.form.get("inputNombre")
+        segundo_nombre = request.form.get("inputSegundoNombre")
+        primer_apellido = request.form.get("inputPrimerApellido")
+        segundo_apellido = request.form.get("inputSegundoApellido")
+        correo_usuario = request.form.get("inputCorreoUsuario")
+        telefono_usuario = request.form.get("inputTelefonoUsuario")
+        genero_usuario = request.form.get("genero")
+        fecha_nacimiento_usuario = request.form.get("fechaDeNacimiento")
+        tarjeta_identidad = request.form.get("tarjetaDeIdentidad")
+        fecha_expedicion_usuario = request.form.get("fechaDeExpedicion")
+        contraseña_usuario = request.form.get("contraseñaUsuario")
         
         # Validar eque los campos mas importantes sean obligatorios
         
@@ -88,16 +116,17 @@ def registro_usuarios():
             flash("La contraseña del usuario debe tener al menos 6 caracteres.")
             return redirect(url_for('registro_usuarios'))
         
-        nombre_titular = request.form['inputNombreTitular']
-        segundo_nombre_titular = request.form['inputSegundoNombreTitular']
-        apellido_titular = request.form['inputPrimerApellidoTitular']
-        segundo_apellido_titular = request.form['inputSegundoApellidoTitular']
-        correo_titular = request.form['inputCorreoTitular']
-        telefono_titular = request.form['inputTelefonoTitular']
-        parentesco_titular = request.form['parentesco']
-        fecha_nacimiento_titular = request.form['fechaDeNacimientoTitular']
-        cc_titular = request.form['tarjetaDeIdentidadTitular']
-        fecha_expedicion_titular = request.form['fechaDeExpedicionTitular']
+        # Obteniendo los datos del titular/acudiente
+        nombre_titular = request.form.get('inputNombreTitular')
+        segundo_nombre_titular = request.form.get('inputSegundoNombreTitular')
+        apellido_titular = request.form.get('inputPrimerApellidoTitular')
+        segundo_apellido_titular = request.form.get('inputSegundoApellidoTitular')
+        correo_titular = request.form.get('inputCorreoTitular')
+        telefono_titular = request.form.get('inputTelefonoTitular')
+        parentesco_titular = request.form.get('parentesco')
+        fecha_nacimiento_titular = request.form.get('fechaDeNacimientoTitular')
+        cc_titular = request.form.get('tarjetaDeIdentidadTitular')
+        fecha_expedicion_titular = request.form.get('fechaDeExpedicionTitular')
 
         if not nombre_titular or not apellido_titular or not correo_titular or not telefono_titular or not parentesco_titular or not fecha_nacimiento_titular or not cc_titular or not fecha_expedicion_titular:
             flash("Todos los campos obligatorios del titular deben estar completos.")
@@ -186,19 +215,22 @@ def procesar_terminos_condiciones():
         return redirect(url_for('perfil'))
     else:
         flash("Debes aceptar los términos y condiciones para continuar.")
-        return redirect(url_for('registro_usuarios'))
+        return redirect(url_for('index'))
 
 @app.route('/terminos_condiciones_usuarios')
 def terminos_condiciones_usuarios():
     return render_template('sub_pages/terminosCondicionesUsuarios.html')
 
 @app.route('/perfil')
+@login_requerido
 def perfil():
-    return render_template('sub_pages/perfilUsuario.html')
+    usuario = Usuario.query.get(session['usuario_id'])  # Recuperar el usuario que está en sesión
+    return render_template('sub_pages/perfilUsuario.html', usuario=usuario)
 
 @app.route('/admin')
+@login_requerido
 def admin():
-    usuarios = Usuario.query.all() 
+    usuarios = Usuario.query.all()  # Listar todos los usuarios
     return render_template('/admin.html', usuarios=usuarios)
 
 if __name__ == "__main__":
