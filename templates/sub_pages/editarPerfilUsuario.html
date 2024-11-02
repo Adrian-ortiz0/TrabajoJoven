@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/style.css">
+    <script defer src="/static/js/editarPerfilUsuario.js"></script>
     <title>Editar Perfil</title>
 </head>
 
@@ -12,23 +13,29 @@
     <section class="seccionEdicionUsuario">
         <div class="contenedorEdicionPerfilUsuario">
             <section class="edicionDePerfil">
-                <form action="/subir_foto_perfil" method="POST" enctype="multipart/form-data">
-                    <button id="perfilFoto" type="submit">
+                <form action="{{ url_for('subir_foto_perfil') }}" method="POST" enctype="multipart/form-data"
+                    id="formFotoPerfil">
+                    <div class="foto-perfil-container">
+                        <!-- Contenedor de la foto de perfil -->
                         <div class="foto-perfil">
                             {% if usuario.foto_perfil %}
-                                <img src="{{ usuario.foto_perfil }}" alt="Foto de perfil" width="150px">
+                            <img src="{{ url_for('static', filename='uploads/' + usuario.foto_perfil) }}"
+                                alt="Foto de perfil" width="150px" height="150px"
+                                style="object-fit: cover; border-radius: 50%;">
                             {% else %}
-                                <img src="/static/backstage/user2.svg" alt="Foto de perfil predeterminada" width="150px">
+                            <img src="/static/backstage/user2.svg" alt="Foto de perfil predeterminada" width="150px">
                             {% endif %}
                         </div>
-                    </button>
-                    <input type="file" name="foto_perfil" accept="image/*" required>
-                    <h2>{{ usuario.nombre }} {{ usuario.primer_apellido }}</h2> <!-- Mostrar nombre y apellido -->
+                        <!-- Input file oculto -->
+                        <input type="file" name="foto_perfil" id="inputFotoPerfil" accept="image/*"
+                            style="display: none;">
+                    </div>
+                    <h2>{{ usuario.nombre }} {{ usuario.primer_apellido }}</h2>
                 </form>
             </section>
             <div class="containerBtnUsuarioOpciones">
                 <button id="btnCambiarContraseña">Cambiar contraseña</button>
-                <button id="btnCambiarFoto">Cambiar foto de perfil</button>
+                <button id="btnCambiarFoto" type="button">Cambiar foto de perfil</button>
             </div>
         </div>
     </section>

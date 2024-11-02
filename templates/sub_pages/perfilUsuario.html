@@ -23,7 +23,7 @@
         <a href="#" id="logoutButtonJovenes">
             <img src="/static/backstage/log_out.svg" alt="log_out" width="40px">
         </a>
-        
+
         <div class="overlay" id="overlay">
             <div class="modal">
                 <p>¿Estás seguro que deseas cerrar sesión?</p>
@@ -34,9 +34,14 @@
             </div>
         </div>
         <section class="edicionDePerfil">
-            <button id="perfilFoto">
-                <img src="/static/backstage/user2.svg" alt="" width="150px">
-            </button>
+            <div class="foto-perfil-container">
+                {% if usuario.foto_perfil %}
+                <img src="{{ url_for('static', filename='uploads/' + usuario.foto_perfil) }}" alt="Foto de perfil"
+                    width="150px" height="150px" style="object-fit: cover; border-radius: 50%;">
+                {% else %}
+                <img src="/static/backstage/user2.svg" alt="Foto de perfil predeterminada" width="150px">
+                {% endif %}
+            </div>
             <h2>{{usuario.nombre}} {{usuario.primer_apellido}}</h2>
         </section>
         <div class="containerBtnUsuarioOpciones">

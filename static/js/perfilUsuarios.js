@@ -35,21 +35,3 @@ window.addEventListener("click", function (event) {
   }
 });
 
-function mostrarFoto(event) {
-    const input = event.target;
-    const file = input.files[0];
-    const img = document.getElementById('fotoPerfil');
-
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            img.src = e.target.result;
-        }
-        reader.readAsDataURL(file); // Lee el archivo como URL de datos
-    }
-}
-
-document.getElementById('nombrePerfil').addEventListener('input', function() {
-    const nombreMostrado = document.getElementById('nombreMostrado');
-    nombreMostrado.textContent = `Nombre: ${this.value}`; // Actualiza el nombre mostrado
-});
