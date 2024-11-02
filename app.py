@@ -260,7 +260,7 @@ def procesar_terminos_condiciones():
 @app.route('/editarPerfilUsuario')
 @login_requerido
 def editarPerfilUsuario():
-    usuario = Usuario.query.first()  # Cambia esto según cómo desees recuperar al usuario
+    usuario = Usuario.query.get(session['usuario_id'])  # Cambia esto según cómo desees recuperar al usuario
     if usuario is None:
         return "No hay usuarios registrados."  # O redirigir a otra página o mostrar un mensaje adecuado.
     
