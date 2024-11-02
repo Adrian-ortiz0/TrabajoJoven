@@ -221,6 +221,13 @@ def procesar_terminos_condiciones():
 def terminos_condiciones_usuarios():
     return render_template('sub_pages/terminosCondicionesUsuarios.html')
 
+@app.route('/logout', methods=['POST'])
+@login_requerido
+def logout():
+    session.clear()
+    flash('Has cerrado sesión correctamente')
+    return redirect(url_for('index'))
+
 @app.route('/perfil')
 @login_requerido
 def perfil():

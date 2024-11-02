@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil</title>
     <link rel="stylesheet" href="/static/style.css">
+    <script defer src="/static/js/perfilUsuarios.js"></script>
 </head>
 
 <body>
@@ -13,6 +14,19 @@
         <button id="ajustesUsuarioBtn">
             <img src="/static/backstage/ajustes.svg" alt="" width="40px">
         </button>
+        <a href="#" id="logoutButtonJovenes">
+            <img src="/static/backstage/log_out.svg" alt="log_out" width="40px">
+        </a>
+        
+        <div class="overlay" id="overlay">
+            <div class="modal">
+                <p>¿Estás seguro que deseas cerrar sesión?</p>
+                <form action="{{ url_for('logout') }}" method="POST" style="display: inline;">
+                    <button type="submit" id="confirmLogout">Sí</button>
+                </form>
+                <button id="cancelLogout">No</button>
+            </div>
+        </div>
         <section class="edicionDePerfil">
             <button id="perfilFoto">
                 <img src="/static/backstage/user2.svg" alt="" width="150px">
