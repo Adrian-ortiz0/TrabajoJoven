@@ -1,8 +1,10 @@
 from flask import Flask, render_template, request, redirect,url_for, flash, session
 import re
+import os
 from models import db, Usuario, Acudiente
 from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 
@@ -81,6 +83,44 @@ def login_requerido(f):
             return redirect(url_for('login_usuarios'))  # Redirigir al login si no está autenticado
         return f(*args, **kwargs)
     return wrap
+
+# ----------------------------------------------------------------------------------------------------------------
+
+# Creacion de la funcion para subir imagenes
+
+# Configura la carpeta donde se guardarán las imágenes
+UPLOAD_FOLDER = 'static/uploads'  # Asegúrate de que esta carpeta exista
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+# Asegúrate de que el tamaño máximo del archivo no sea demasiado grande
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16 MB
+
+@app.route('/subir_foto_perfil', methods=['POST'])
+@login_requerido
+def subir_foto_perfil():
+    if 'foto_perfil' not in request.files:
+        flash('No se seleccionó ningún archivo')
+        return redirect(url_for('perfil'))
+
+    archivo = request.files['foto_perfil']
+    
+    if archivo.filename == '':
+        flash('No se seleccionó ningún archivo')
+        return redirect(url_for('perfil'))
+
+    # Asegúrate de que el archivo sea seguro para ser guardado
+    filename = secure_filename(archivo.filename)
+    archivo.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+    # Aquí podrías guardar la ruta de la imagen en la base de datos, asociándola al usuario
+    usuario = Usuario.query.get(session['usuario_id'])
+    usuario.foto_perfil = filename  # Asumiendo que tienes un campo `foto_perfil` en tu modelo Usuario
+    db.session.commit()
+
+    flash('Foto de perfil actualizada con éxito')
+    return redirect(url_for('perfil'))
+
+# -----------------------------------------------------------------------------------------------------------------
 
 @app.route('/registro_usuarios', methods=['GET', 'POST'])
 def registro_usuarios():
@@ -216,6 +256,15 @@ def procesar_terminos_condiciones():
     else:
         flash("Debes aceptar los términos y condiciones para continuar.")
         return redirect(url_for('index'))
+    
+@app.route('/editarPerfilUsuario')
+@login_requerido
+def editarPerfilUsuario():
+    usuario = Usuario.query.first()  # Cambia esto según cómo desees recuperar al usuario
+    if usuario is None:
+        return "No hay usuarios registrados."  # O redirigir a otra página o mostrar un mensaje adecuado.
+    
+    return render_template('sub_pages/editarPerfilUsuario.html', usuario=usuario)
 
 @app.route('/terminos_condiciones_usuarios')
 def terminos_condiciones_usuarios():

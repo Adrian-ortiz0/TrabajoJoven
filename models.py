@@ -16,6 +16,7 @@ class Usuario(db.Model):
     tarjeta_identidad = db.Column(db.String(20), nullable=False, unique=True)
     fecha_expedicion = db.Column(db.String(10), nullable=False)
     contraseña = db.Column(db.String(200), nullable=False)
+    foto_perfil = db.Column(db.String(200))
     
     # Relaciones
     acudiente_id = db.Column(db.Integer, db.ForeignKey('acudiente.id'))

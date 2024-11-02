@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <title>Editar Perfil</title>
+</head>
+
+<body>
+    <section class="seccionEdicionUsuario">
+        <div class="contenedorEdicionPerfilUsuario">
+            <section class="edicionDePerfil">
+                <form action="/subir_foto_perfil" method="POST" enctype="multipart/form-data">
+                    <button id="perfilFoto" type="submit">
+                        <div class="foto-perfil">
+                            {% if usuario.foto_perfil %}
+                                <img src="{{ usuario.foto_perfil }}" alt="Foto de perfil" width="150px">
+                            {% else %}
+                                <img src="/static/backstage/user2.svg" alt="Foto de perfil predeterminada" width="150px">
+                            {% endif %}
+                        </div>
+                    </button>
+                    <input type="file" name="foto_perfil" accept="image/*" required>
+                    <h2>{{ usuario.nombre }} {{ usuario.primer_apellido }}</h2> <!-- Mostrar nombre y apellido -->
+                </form>
+            </section>
+            <div class="containerBtnUsuarioOpciones">
+                <button id="btnCambiarContraseña">Cambiar contraseña</button>
+                <button id="btnCambiarFoto">Cambiar foto de perfil</button>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

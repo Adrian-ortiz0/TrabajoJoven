@@ -255,12 +255,68 @@ hr {
   border: none;
   cursor: pointer;
 }
+.seccionEdicionUsuario {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  justify-content: center;
+}
+.contenedorEdicionPerfilUsuario {
+  display: flex;
+  flex-direction: column;
+  height: 70%;
+  justify-content: space-around;
+  margin: auto;
+}
+
+.marcoFotoPerfil {
+  width: 160px;
+  height: 160px;
+  border: 5px solid orange;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+#fotoPerfil {
+  width: 100%;
+  height: auto;
+}
+
 .containerBtnUsuarioOpciones {
   display: flex;
-  width: 90%;
+  width: 100%;
   align-items: center;
+  gap: 20px;
   justify-content: space-around;
 }
+
+#btnCambiarContraseña {
+  background-color: rgb(233, 109, 21);
+  border: none;
+  width: 140px;
+  height: 70px;
+  border-radius: 15px;
+  color: white;
+  font-family: baloo;
+  font-size: 20px;
+}
+
+#btnCambiarFoto {
+  background-color: rgb(25, 200, 154);
+  border: none;
+  width: 140px;
+  height: 70px;
+  border-radius: 15px;
+  color: white;
+  font-family: baloo;
+  font-size: 20px;
+}
+
 #btnCurriculum {
   background-color: rgb(233, 109, 21);
   border: none;
@@ -342,6 +398,34 @@ hr {
   top: 20px;
   cursor: pointer;
 }
+.menu-desplegable {
+  display: none;
+  position: absolute;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  padding: 10px;
+  min-width: 150px;
+  z-index: 1000;
+  top: 65px;
+  right: 0;
+}
+
+.menu-desplegable a {
+  display: block;
+  padding: 8px;
+  color: #333;
+  text-decoration: none;
+  border-bottom: 1px solid #ddd;
+}
+
+.menu-desplegable a:last-child {
+  border-bottom: none;
+}
+
+.menu-desplegable a:hover {
+  background-color: #f0f0f0;
+}
 #logoutButtonJovenes {
   position: relative;
   right: 150px;
@@ -354,8 +438,8 @@ hr {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.7); /* Oscurecer el fondo */
-  display: none; /* Oculto por defecto */
+  background-color: rgba(0, 0, 0, 0.7);
+  display: none;
   justify-content: center;
   align-items: center;
 }

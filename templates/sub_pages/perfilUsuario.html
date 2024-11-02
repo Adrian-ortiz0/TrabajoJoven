@@ -14,6 +14,12 @@
         <button id="ajustesUsuarioBtn">
             <img src="/static/backstage/ajustes.svg" alt="" width="40px">
         </button>
+
+        <div id="ajustesMenu" class="menu-desplegable">
+            <a href="{{url_for('editarPerfilUsuario')}}">Editar perfil</a>
+            <a href="/ver-mas">Ver más</a>
+        </div>
+
         <a href="#" id="logoutButtonJovenes">
             <img src="/static/backstage/log_out.svg" alt="log_out" width="40px">
         </a>
@@ -31,7 +37,7 @@
             <button id="perfilFoto">
                 <img src="/static/backstage/user2.svg" alt="" width="150px">
             </button>
-            <h2>Nombre</h2>
+            <h2>{{usuario.nombre}} {{usuario.primer_apellido}}</h2>
         </section>
         <div class="containerBtnUsuarioOpciones">
             <button id="btnCurriculum">Curriculum</button>
